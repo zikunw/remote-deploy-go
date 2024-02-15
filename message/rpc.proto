@@ -1,0 +1,23 @@
+syntax = "proto3";
+package message;
+option go_package = "github.com/zikunw/remote-deploy-go/message";
+
+service Processor {
+  rpc Deploy(stream DeployRequest) returns (Empty) {}
+  rpc Process(ProcessRequest) returns (ProcessResponse) {}
+}
+
+message Empty {
+}
+
+message DeployRequest {
+  bytes udf = 1;
+}
+
+message ProcessRequest {
+  string input = 2;
+}
+
+message ProcessResponse {
+  string output = 3;
+}
